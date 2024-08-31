@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tutoriales</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
+</head>
+<body>
+    <header class="menu container">
+        <a href="{{ url_for('home') }}" class="logo">Graficas Bipartita Psicologia</a>
+        <nav class="navbar">
+            <ul>
+                <li><a href="{{ url_for('home') }}">Inicio</a></li>
+                <li><a href="{{ url_for('tutoriales') }}">Tutoriales</a></li>
+                <li><a href="{{ url_for('acerca_de') }}">Acerca De</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main class="container">
+        <h1>Tutoriales</h1>
+        <!-- ... (contenido previo) ... -->
+        <h2>Formato de la Base de Datos</h2>
+<p>Se trabajará con bases de datos en forma tabular (columnas y filas). En una gráfica bipartita, el conjunto de nodos se divide en dos. En esta página web, el primer subconjunto de nodos tendrá a las personas, mientras que el segundo subconjunto de nodos tendrá los datos psicométricos.</p>
+
+<h3>Primer Subconjunto de la Gráfica Bipartita</h3>
+<p>La primera columna de la base de datos tendrá a las personas que se están evaluando. Es importante que el nombre de esta columna sea: Persona. Si se tiene otro nombre, no se ejecutará el programa.</p>
+
+<h3>Segundo Subconjunto de la Gráfica Bipartita</h3>
+<p>A partir de la segunda columna de la base de datos, sólo se deben incluir los datos que se quieren analizar del subconjunto de datos psicométricos. Los datos psicométricos pueden ser de 3 tipos:</p>
+<ol>
+    <li>Respuestas a los reactivos de una o varias pruebas psicológicas. Lo importante es que las opciones de respuesta de los reactivos sean de tipo Likert.</li>
+    <li>Categorías que una prueba psicológica produce con el puntaje global, por ejemplo, las categorías de mínimo, leve, moderado o severo.</li>
+    <li>Datos que no provienen de pruebas psicológicas (sexo, estado civil, escolaridad, etc.) se pueden incluir, siempre y cuando se representen por categorías.</li>
+</ol>
+<p>Es importante recordar, que en la base de datos cada columna representa sólo a un reactivo, una prueba psicológica, o una variable.</p>
+
+        
+
+        <h2>Ejemplos de Bases de Datos</h2>
+        <h3>Ejemplo de Base de Datos con Reactivos en las Columnas</h3>
+        <p>En este caso, "R" es un reactivo y la escala de Richter tiene cinco opciones de respuesta.</p>
+        <table>
+            <tr>
+                <th>Persona</th>
+                <th>R1</th>
+                <th>R2</th>
+                <th>R3</th>
+            </tr>
+            <tr>
+                <td>P1</td>
+                <td>1</td>
+                <td>3</td>
+                <td>5</td>
+            </tr>
+            <tr>
+                <td>P2</td>
+                <td>2</td>
+                <td>4</td>
+                <td>1</td>
+            </tr>
+            <tr>
+                <td>P3</td>
+                <td>5</td>
+                <td>2</td>
+                <td>3</td>
+            </tr>
+            <tr>
+                <td>P4</td>
+                <td>3</td>
+                <td>1</td>
+                <td>4</td>
+            </tr>
+        </table>
+
+        <h3>Ejemplo de Base de Datos con Cuestionarios en las Columnas y Categorías en las Filas</h3>
+        <p>En este caso, "IA" es el Inventario de Ansiedad y "BD" es el Inventario de Depresión de Beck. Las categorías son: 1 = Mínimo, 2 = Leve, 3 = Moderado, 4 = Severo.</p>
+        <table>
+            <tr>
+                <th>Persona</th>
+                <th>IA</th>
+                <th>BD</th>
+            </tr>
+            <tr>
+                <td>P1</td>
+                <td>2</td>
+                <td>3</td>
+            </tr>
+            <tr>
+                <td>P2</td>
+                <td>1</td>
+                <td>4</td>
+            </tr>
+            <tr>
+                <td>P3</td>
+                <td>3</td>
+                <td>2</td>
+            </tr>
+            <tr>
+                <td>P4</td>
+                <td>4</td>
+                <td>1</td>
+            </tr>
+        </table>
+
+        <!-- ... (contenido posterior) ... -->
+        <h2>Recomendaciones para Nombrar las Columnas y Filas</h2>
+<p>Para las filas, de la columna “Persona”, se recomienda que el nombre o código de identificación para cada caso contenga pocos caracteres, ya que este se utilizará como etiqueta de los nodos.</p>
+<p>En el subconjunto de datos psicométricos, el nombre de cada columna puede variar, se sugiere que tengan pocos caracteres, debido a que esté se usará como etiqueta de los nodos de la gráfica bipartita. Para el nombre de cada fila, se recomienda que se incluya solo el número asociado a cada opción de respuesta de la escala Likert. En el caso de las categorías generales, de las pruebas psicológicas, se debe numerar o clasificar con pocos caracteres. Dado que en ambos casos (respuesta Likert o categoría general), los nombres de cada fila servirán para etiquetar los nodos de la gráfica bipartita.</p>
+<p>La etiqueta o nombre de los nodos del subconjunto de los datos psicométricos tiene la siguiente forma: Nombre de la columna+L+Nombre de la fila. La letra “L” servirá para separar los nombres de las columnas y filas.</p>
+<p>Ejemplos:</p>
+<ol>
+    <li>Si el nombre de la columna es: Item1 y el nombre de la fila es: 2 (que correspondería a la opción pocas veces de alguna escala Likert). La etiqueta del nodo sería: Item1L2.0. En la creación de la etiqueta, el valor de la fila se representa con valores decimales por eso aparece 2.0</li>
+    <li>Si el nombre de la columna es: BeckD, (que correspondería al inventario de depresión de Beck) y el nombre de la fila es: Leve (que se obtiene del puntaje global). La etiqueta del nodo sería: BeckDLLeve</li>
+    <li>Si el nombre de la columna es: Me siento descansado al levantarme por la mañana y el nombre de la fila es: 3 veces por semana. La etiqueta del nodo sería: Me siento descansado al levantarme por la mañanaL3 veces por semana. En este caso, tanto columna como fila tienen muchos caracteres y serían la etiqueta de un nodo de la gráfica bipartita, esto afectaría la representación de la gráfica cuando se muestren las etiquetas de cada nodo.</li>
+</ol>
+
+<section class="analisis-comunidades">
+    <h2>Análisis de Comunidades</h2>
+    <p>A las gráficas bipartitas proyectadas tanto del conjunto de personas como del conjunto de las variables psicológicas se les aplica el algoritmo de comunidades de Louvain.</p>
+    <p>Por cada gráfica proyectada se genera un archivo tipo csv con las comunidades encontradas separadas por columnas.</p>
+    <p>En el caso de la gráfica bipartita proyectada de las personas el archivo se llamará: “Comunidades_Personas.csv”. En el cual, dependiendo de la cantidad de comunidades detectadas, aparecerán en columnas distintas los nodos asociados con las personas.</p>
+    <p>En el caso de la gráfica bipartita proyectada de las variables psicológicas el archivo se llamará: “Comunidades_Psicol.csv”. En el cual, dependiendo de la cantidad de comunidades detectadas, aparecerán en columnas distintas los nodos asociados con las variables psicológicas.</p>
+</section>
+
+
+
+    </main>
+    <footer class="footer container">
+        <p>Contribuciones por Lic. Jorge Abel Mejía Venegas y Dr. Erik Leonardo Mateos Salgado.</p>
+        <p>Parte de las actividades de la Facultad de Psicología, UNAM.</p>
+        <p>2024 Ciencia de Redes y Psicología. Todos los derechos reservados.</p>
+    </footer>
+    
+
+    
+</body>
+</html>

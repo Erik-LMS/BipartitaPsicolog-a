@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modelación de datos psicométricos con gráficas bipartitas</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
+</head>
+<body>
+    <header>
+        <img src="{{ url_for('static', filename='images/Neural-Architecture-Optimization.png') }}" alt="Fondo de Red Neuronal" class="header-background-image">
+        <div class="menu container"> 
+            <img src="{{ url_for('static', filename='images/logopsi.png') }}" alt="Logo UNAM" class="logo-unam">
+            <a href="#" class="logo">Ciencia de Redes y Psicología</a>
+            <nav class="navbar">
+                <ul>
+                    <li><a href="{{ url_for('home') }}">Inicio</a></li>
+                    <li><a href="{{ url_for('tutoriales') }}">Tutoriales</a></li>
+                    <li><a href="{{ url_for('acerca_de') }}">Acerca De</a></li>   
+                    </ul>
+            </nav>
+        </div>
+
+        <div class="header-content container">
+            <h1>Modelado de datos psicométricos con gráficas bipartitas</h1>
+            <p>Página web que permite crear gráficas bipartitas (redes bimodales) con datos psicométricos y realizar el procedimiento de proyección. Se incluye un análisis de comunidades (clustering) que analiza las dos proyecciones de las gráficas bipartitas. Por favor revisa la sección de tutoriales para verificar la estructura de la base de datos e información relacionada.</p>
+            <a href="#informacion" class="btn-1">Información</a>
+        </div>
+    </header>
+
+
+<!-- Sección para subir los archivos -->
+<section class="file-upload container" id="informacion">
+    <h2>Sube tu archivo</h2>
+    
+    <!-- Contenedor del Spinner de Carga -->
+    <div id="loading-spinner" style="display: none;">
+        <div class="spinner-outer">
+            <!-- Repite este div para cada bolita azul exterior (7 veces) -->
+            <div class="spinner-dot spinner-dot-outer"></div>
+            <!-- Añade más divs según sea necesario -->
+        </div>
+        <div class="spinner-inner">
+            <!-- Repite este div para cada bolita dorada interior (3 veces) -->
+            <div class="spinner-dot spinner-dot-inner"></div>
+            <!-- Añade más divs según sea necesario -->
+        </div>
+    </div>
+
+    <form id="upload-form" action="{{ url_for('home') }}" method="post" enctype="multipart/form-data">
+        <input type="file" name="file" id="file" required>
+        <input type="submit" value="Procesar archivo" class="submit-btn" onclick="saveScrollPosition()">
+    </form>
+    
+    <!-- Mostrar el estado actual del procesamiento -->
+    <div id="status">
+        <h3>Estado del proceso:</h3>
+        <p id="status-text">{{ status }}</p>
+    </div>
+    
+
+</section>
+
+    
+    <!-- Sección para descargar los archivos procesados -->
+    <section class="file-download container">
+        <h2>Descarga los archivos procesados</h2>
+        <ul>
+            {% for file in files %}
+                <li><a href="{{ url_for('download_file', filename=file) }}">{{ file }}</a></li>
+            {% endfor %}
+        </ul>
+    </section>
+
+    <section class="general-content">
+        <h2>Funcionalidad del programa</h2> 
+        <div class="general-1">
+            <h3>Soporte Multiformato</h3>
+            <p>Esta página web admite la carga de archivos en los siguientes formatos: .sav del SPSS; .csv o .XLSX de Excel. Facilitando su funcionamiento con múltiples herramientas de creación de bases de datos. La creación y los análisis de las redes se basan en NetworkX de python, pero no se requiere que el usuario los instale en su computadora.</p>
+        </div>
+        <div class="general-2">
+            <h3>Generación de Gráficas Bipartitas</h3>
+            <p>Una vez cargado el archivo, la página web genera una gráfica bipartita. La partición de los nodos se realizará en un conjunto que se forma con las personas y el otro conjunto se forma con los datos psicométricos. Además, se realiza el procedimiento de proyección considerando ambos conjuntos de Personas y de los Datos Psicométricos. Finalmente en cada conjunto proyectado se identifican sus comunidades o clusters. </p>
+        </div>
+        <div class="general-3">
+            <h3>Descarga en Formato .gexf y .csv</h3>
+            <p>Las tres gráficas generadas se descargan en formato .gexf, que es compatible con herramientas de visualización y análisis de redes, recomendamos el uso del software Gephi. Los resultados del análisis de comunidades se guardan en dos archivos tipo CSV.</p>
+        </div>
+    </section>
+
+    <footer class="footer container">
+        <h2>Contacto</h2>
+            <input class="campo" type="text" name="nombre" placeholder="Nombre" required>
+            <input class="campo" type="email" name="email" placeholder="Email" required>
+            <input class="btn-2" type="submit" value="Enviar">
+        </form>
+        <div class="footer-txt"> 
+            <p>Contribuciones por Lic. Jorge Abel Mejía Venegas y Dr. Erik Leonardo Mateos Salgado.</p>
+            <p>Parte de las actividades de la Facultad de Psicología, UNAM.</p>
+            <p>2024 Ciencia de Redes y Psicología. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+
+    <!-- S C R I P S -->
+    <script>
+        // Función para guardar la posición actual de desplazamiento
+        function saveScrollPosition() {
+            sessionStorage.setItem('scrollPosition', window.scrollY);
+        }
+    
+        // Recuperar y restaurar la posición de desplazamiento después de cargar la página
+        window.onload = function() {
+            var scrollPosition = sessionStorage.getItem('scrollPosition');
+            if (scrollPosition !== null) {
+                window.scrollTo(0, scrollPosition);
+                sessionStorage.removeItem('scrollPosition');
+            }
+        };
+    
+        // Actualizar estado en tiempo real
+        function updateStatus(filename) {
+            fetch('/progress?filename=' + filename)
+            .then(response => response.json())
+            .then(data => {
+                document.getElementById('status-text').textContent = data;
+                if (data.indexOf("Proceso completado con éxito") === -1) {
+                    setTimeout(() => updateStatus(filename), 1000);
+                }
+            });
+        }
+    
+        // Al enviar el formulario, comienza a actualizar el estado
+        document.getElementById('upload-form').onsubmit = function() {
+            var filename = document.getElementById('file').value.split('\\').pop();
+            saveScrollPosition(); // Guardar la posición de desplazamiento antes de actualizar
+            updateStatus(filename); // Iniciar la actualización del estado
+        };
+    </script>
+    
+
+        <!-- Referencia al archivo JavaScript para el spinner de carga -->
+        <script src="{{ url_for('static', filename='js/spinner.js') }}"></script>
+
+
+</body>
+</html>

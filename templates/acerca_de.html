@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Acerca De</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
+</head>
+<body>
+    <header class="menu container">
+        <a href="{{ url_for('home') }}" class="logo">Ciencia de Redes y Psicología</a>
+        <nav class="navbar">
+            <ul>
+                <li><a href="{{ url_for('home') }}">Inicio</a></li>
+                <li><a href="{{ url_for('tutoriales') }}">Tutoriales</a></li>
+                <li><a href="{{ url_for('acerca_de') }}" class="active">Acerca De</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main class="container">
+        <h1>Acerca De</h1>
+        <div class="acerca-de-section">
+            <p>El desarrollo de esta página formó parte de las actividades de la <strong>Cátedra Especial Rafael Santamarina Sola</strong> que otorga la <strong>Facultad de Psicología de la UNAM</strong> durante el periodo <strong>2023-2024</strong>.</p>
+            <p>Participaron en su elaboración:</p>
+            <ul>
+                <li>Lic. Jorge Abel Mejía Venegas</li>
+                <li>Dr. Erik Leonardo Mateos Salgado</li>
+            </ul>
+            <p>Para cualquier duda o comentario, no dudes en contactarnos a través del siguiente correo electrónico:</p>
+            <p><a href="mailto:eriklms@comunidad.unam.mx">eriklms@comunidad.unam.mx</a></p>
+        </div>
+    </main>
+    <footer class="footer container">
+        <p>Contribuciones por Lic. Jorge Abel Mejía Venegas y Dr. Erik Leonardo Mateos Salgado.</p>
+        <p>Parte de las actividades de la Facultad de Psicología, UNAM.</p>
+        <p>2024 Ciencia de Redes y Psicología. Todos los derechos reservados.</p>
+    </footer>
+</body>
+</html>

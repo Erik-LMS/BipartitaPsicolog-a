@@ -1,0 +1,389 @@
+@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@100;400;800&display=swap');
+
+/* Restablecimiento básico para navegadores */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Raleway', sans-serif;
+    background-color: #FFFFFF;
+    color: #000000;
+    line-height: 1.6;
+}
+
+.container {
+    width: 80%;
+    margin: auto;
+    overflow: hidden;
+}
+
+/* Estilos para el encabezado */
+header {
+    background-color: #00204A;
+    color: #FFFFFF;
+    padding-top: 30px;
+    min-height: 70px;
+    border-bottom: #FFC72C 3px solid;
+}
+
+.menu.container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-bottom: 30px;
+    border-bottom: #FFC72C 3px solid; /* Estilo del borde inferior del menú */
+}
+
+
+.menu {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 30px;
+}
+
+.menu .logo {
+    font-size: 1.5rem;
+    text-decoration: none;
+    color: #FFFFFF;
+}
+
+.navbar ul {
+    list-style-type: none;
+}
+
+.navbar ul li {
+    display: inline;
+    margin: 0 15px;
+}
+
+.navbar ul li a {
+    color: #FFFFFF;
+    text-decoration: none;
+    padding: 5px 5px;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.navbar ul li a:hover {
+    background-color: #FFC72C;
+    color: #00204A;
+}
+
+.header-content {
+    text-align: center;
+    padding: 150px 0;
+}
+
+.header-content h1 {
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+}
+
+.header-content p {
+    font-size: 1rem;
+    margin-bottom: 20px;
+}
+
+.btn-1 {
+    font-size: 1rem;
+    color: #00204A;
+    background-color: #FFC72C;
+    padding: 10px 20px;
+    text-decoration: none;
+    border: none;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.btn-1:hover {
+    background-color: #e5b025;
+}
+
+
+
+/* Estilos Comunes para las Secciones de Archivos */
+.file-section {
+    margin: 50px 0;
+    text-align: center;
+}
+
+/* Estilo personalizado para el botón de selección de archivos */
+.custom-file-upload {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #FFC72C; /* Dorado */
+    color: #000000; /* Texto negro */
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    font-size: 16px; /* Asegúrate de que el tamaño de letra sea el mismo */
+    text-align: center; /* Asegura el alineamiento del texto */
+}
+
+.custom-file-upload:hover {
+    background-color: #e5b025; /* Un dorado más oscuro para el hover */
+}
+
+/* Estilos para el botón de submit, aplicable a la carga de archivos */
+.file-upload input[type="submit"] {
+    display: inline-block;
+    color: #FFFFFF;
+    background-color: #00204A; /* Azul */
+    padding: 10px 20px; /* Igual al botón de selección de archivo */
+    font-size: 16px; /* Asegúrate de que el tamaño de letra sea el mismo */
+    text-decoration: none;
+    border: none;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+    cursor: pointer; /* Asegura que se muestre el cursor de mano */
+}
+
+.file-upload input[type="submit"]:hover {
+    background-color: #001637; /* Azul más oscuro para el hover */
+}
+
+
+
+
+
+
+
+
+/* Estilos del Spinner de Carga */
+#loading-spinner {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(255, 255, 255, 0.5); /* Fondo ligeramente pálido */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+}
+
+.spinner-outer, .spinner-inner {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.spinner-dot-outer, .spinner-dot-inner {
+    width: 24px; /* Tamaño de las bolitas */
+    height: 24px;
+    border-radius: 50%;
+    position: absolute;
+    border: none; /* Asegura que no haya bordes */
+}
+
+.spinner-dot-outer {
+    background-color: blue; /* Color de las bolitas azules */
+}
+
+.spinner-dot-inner {
+    background-color: gold; /* Color de las bolitas doradas */
+}
+
+
+/* Aplicar la animación de rotación a los contenedores */
+.spinner-outer {
+    animation: spin-right 4s linear infinite;
+}
+
+.spinner-inner {
+    animation: spin-left 4s linear infinite;
+}
+
+@keyframes spin-right {
+    from { transform: translate(-50%, -50%) rotate(0deg); }
+    to { transform: translate(-50%, -50%) rotate(360deg); }
+}
+
+@keyframes spin-left {
+    from { transform: translate(-50%, -50%) rotate(0deg); }
+    to { transform: translate(-50%, -50%) rotate(-360deg); }
+}
+
+
+
+
+
+
+
+
+
+
+/* Estilos para la sección de funcionalidad del programa */
+.general-content {
+    margin: 50px 0;
+    padding: 20px;
+    background-color: #E5E5E5;
+    border-radius: 5px;
+}
+
+.general-content h2 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.general-1, .general-2, .general-3 {
+    margin-top: 20px;
+}
+
+/* Estilos para el pie de página */
+.footer {
+    background-color: #F0F0F0;
+    color: #000000;
+    text-align: center;
+    padding: 20px 0;
+    margin-top: 50px;
+}
+
+.footer form {
+    margin-top: 10px;
+}
+
+.campo {
+    padding: 10px;
+    margin: 10px 0;
+    width: calc(100% - 22px);
+    border-radius: 5px;
+}
+
+.btn-2 {
+    display: inline-block;
+    background-color: #00204A;
+    color: #FFFFFF;
+    padding: 10px 20px;
+    text-decoration: none;
+    border: none;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.btn-2:hover {
+    background-color: #001637;
+}
+
+.footer-txt p {
+    margin-top: 20px;
+}
+
+.nav-link:hover {
+    color: #ffffff; /* o el color que prefieras */
+}
+
+.tabla-ejemplo {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.tabla-ejemplo th, .tabla-ejemplo td {
+    border: 1px solid #CCCCCC; /* Color de los bordes */
+    padding: 8px; /* Espaciado dentro de las celdas */
+    text-align: left; /* Alineación del texto */
+}
+
+.tabla-ejemplo th {
+    background-color: #F5F5F5; /* Color de fondo para los encabezados */
+}
+
+.tabla-ejemplo tr:nth-child(even) {
+    background-color: #FAFAFA; /* Color de fondo para las filas pares */
+}
+
+
+main.container p, main.container ol {
+    text-align: justify;
+    margin-bottom: 20px; /* Añade un margen inferior para separar elementos */
+    line-height: 1.6; /* Aumenta el espacio entre líneas */
+}
+
+main.container ol {
+    padding-left: 20px; /* Añade un poco de padding a la lista para alinearla visualmente con el resto del contenido */
+}
+
+main.container ol li {
+    margin-bottom: 10px; /* Añade margen inferior a los ítems de la lista para separarlos un poco */
+}
+
+
+
+
+main.container table {
+    width: auto; /* Ajusta el ancho al contenido */
+    max-width: 90%; /* Aumenta el ancho máximo a 90% */
+    border-collapse: collapse; /* Elimina el espacio entre los bordes de las celdas */
+    margin: 20px auto; /* Centra la tabla horizontalmente y añade espacio arriba y abajo */
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1); /* Añade una sombra sutil para resaltar la tabla */
+}
+
+main.container th, main.container td {
+    border: 1px solid #ddd; /* Estilo del borde */
+    padding: 8px; /* Espaciado dentro de las celdas */
+    text-align: center; /* Centra el contenido de las celdas */
+    vertical-align: middle; /* Alinea verticalmente el contenido en el medio */
+}
+
+main.container th {
+    background-color: #00204A;/* Color de fondo para los encabezados de la tabla */
+    color: #ffffff; /* Color del texto para los encabezados */
+}
+
+main.container tr:nth-child(even) {
+    background-color: #fafafa; /* Color de fondo para las filas pares */
+}
+
+
+
+.menu.container {
+    display: flex;
+    align-items: center; /* Asegura que el logo y el texto estén alineados verticalmente */
+    justify-content: start; /* Alinea los elementos al inicio del contenedor */
+}
+
+.logo-unam {
+    height: 70px; /* O cualquier tamaño que hayas definido */
+    margin-right: 10px; /* Reduce o ajusta el margen derecho para acercar el logo al título */
+}
+
+.logo {
+    margin: 0; /* Elimina cualquier margen por defecto */
+    padding: 0 10px 0 0; /* Ajusta el padding si es necesario para acercar el título al logo */
+    color: #FFFFFF; /* Asegúrate de que el color del texto sea legible sobre el fondo */
+    text-decoration: none; /* Elimina el subrayado del enlace */
+}
+
+.navbar {
+    margin-left: auto; /* Empuja la barra de navegación hacia la derecha, manteniendo el logo y el título juntos a la izquierda */
+}
+
+
+
+header {
+    position: relative; /* Establece el header como contenedor relativo */
+}
+
+
+
+.header-background-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%; /* Ajusta la imagen para que cubra todo el ancho del header */
+    height: 100%; /* Ajusta la altura para que cubra todo el alto del header */
+    z-index: 0; /* Coloca la imagen detrás del contenido del header */
+    opacity: 0.5; /* Ajusta la opacidad para hacer la imagen más pálida */
+}
+
+.header-content, .menu {
+    position: relative;
+    z-index: 3; /* Asegura que el contenido esté sobre la imagen de fondo */
+}
